@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TransferScreen extends StatelessWidget {
-  const TransferScreen({super.key});
+class TransfertScreen extends StatelessWidget {
+  const TransfertScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+      return Container(height: 10, color: Colors.amber);
   }
 }

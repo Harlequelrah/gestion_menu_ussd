@@ -41,14 +41,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
-  contacts_service:
-    dependency: "direct main"
-    description:
-      name: contacts_service
-      sha256: f6d5ea33b31dfcdcd2e65d8abdc836502e04ddb0f66a96aa726fa9891ea9671e
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.6.3"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -70,6 +62,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_contacts:
+    dependency: "direct main"
+    description:
+      name: flutter_contacts
+      sha256: "388d32cd33f16640ee169570128c933b45f3259bddbfae7a100bb49e5ffea9ae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.9+2"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -78,14 +78,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
-  flutter_phone_direct_caller:
-    dependency: "direct main"
-    description:
-      name: flutter_phone_direct_caller
-      sha256: a50abfb49656d39e777278348742d0d09ecfa5d4918bbc4e0b19df46e8dfd858
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -171,14 +163,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
-  quiver:
-    dependency: transitive
-    description:
-      name: quiver
-      sha256: ea0b925899e64ecdfbf9c7becb60d5b50e706ade44a85b2363be2a22d88117d2
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.2.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -232,14 +216,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.2"
-  ussd_service:
-    dependency: "direct main"
-    description:
-      name: ussd_service
-      sha256: "2eb389b5ac8efa33722939837ef342627d7846a6e1786cae3518f994645168d1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.1"
   vector_math:
     dependency: transitive
     description:

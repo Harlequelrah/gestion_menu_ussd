@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_menu_ussd/screens/home_screen.dart';
-import 'package:gestion_menu_ussd/screens/transfert_screen.dart';
+import 'package:gestion_menu_ussd/screens/contacts_screen.dart';
+import 'package:gestion_menu_ussd/screens/historique_screen.dart';
+import 'package:gestion_menu_ussd/screens/landing_screen.dart';
+import 'package:gestion_menu_ussd/screens/profil_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MainPage(),
+      home: const MainPage(),
     );
   }
 }
@@ -33,9 +36,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
-    const HomeScreen(),
-    const TransferScreen(),
-    const Center(child: Text('Profile')),
+    const LandingScreen(),
+    const HistoryScreen(),
+    const ContactScreen(),
+    const ProfilScreen(),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -53,8 +57,16 @@ class _MainPageState extends State<MainPage> {
         bottomNavigationBar:
             BottomNavigationBar(items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
-          BottomNavigationBarItem(icon: Icon(Icons.send), label: 'Transfert'),
+          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Historique'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.contact_phone), label: 'Contacs'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil')
-        ]));
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: Colors.purple,
+        unselectedItemColor: Colors.blue,
+        ),
+    );
   }
 }
