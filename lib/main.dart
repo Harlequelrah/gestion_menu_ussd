@@ -59,7 +59,7 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Historique'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.contact_phone), label: 'Contacs'),
+              icon: Icon(Icons.contact_phone), label: 'Contacts'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil')
         ],
         currentIndex: _selectedIndex,
