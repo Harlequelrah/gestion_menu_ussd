@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_menu_ussd/services/ussd_service.dart';
 
 class HomeScreen extends StatefulWidget {
   final String operatorChoice;
-  const HomeScreen({super.key, required this.operatorChoice});
+  final int subscriptionId;
+
+  const HomeScreen({
+    super.key,
+    required this.operatorChoice,
+    required this.subscriptionId,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -10,11 +17,43 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String operatorChoice;
+  late int subscriptionId;
+  late String _responseMessage;
+  late bool _isLoading;
+  late UssdServiceManager _ussdService;
 
   @override
   void initState() {
     super.initState();
     operatorChoice = widget.operatorChoice;
+    subscriptionId = widget.subscriptionId;
+    _responseMessage = "";
+    _isLoading = false;
+    _ussdService = UssdServiceManager();
+  }
+
+  void _sendUssdCode(String ussdCode) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      String response = await _ussdService.sendUssdRequest(
+        subscriptionId,
+        ussdCode,
+      );
+      setState(() {
+        _responseMessage = response;
+      });
+    } catch (e) {
+      setState(() {
+        _responseMessage = "Erreur : ${e.toString()}";
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -41,11 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         actions: [
           IconButton(
-              icon: const Icon(Icons.logout,
-                  color: Colors.black87),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
+            icon: const Icon(Icons.logout, color: Colors.black87),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ],
       ),
       body: Padding(
@@ -133,8 +172,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-
-
             const SizedBox(height: 20),
             GridView.count(
               crossAxisCount: 2,
@@ -150,6 +187,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
+                  onTap: () {
+                    _sendUssdCode('*444#'); // Code USSD pour consulter le solde
+                  },
                 ),
                 _buildFeatureButton(
                   icon: Icons.send,
@@ -159,34 +199,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
+                  onTap: () {
+                    // Ajoutez ici le code USSD pour le transfert
+                  },
                 ),
-                _buildFeatureButton(
-                  icon: Icons.arrow_downward,
-                  label: 'Dépôt',
-                  gradient: const LinearGradient(
-                    colors: [Colors.orange, Colors.red],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                _buildFeatureButton(
-                  icon: Icons.remove_circle_outline,
-                  label: 'Retrait',
-                  gradient: const LinearGradient(
-                    colors: [Colors.pink, Colors.deepOrange],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                _buildFeatureButton(
-                  icon: Icons.shop,
-                  label: 'Achat',
-                  gradient: const LinearGradient(
-                    colors: [Colors.teal, Colors.indigo],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
+                // Ajoutez d'autres boutons avec des actions similaires
               ],
             ),
           ],
@@ -199,10 +216,10 @@ class _HomeScreenState extends State<HomeScreen> {
     required IconData icon,
     required String label,
     required LinearGradient gradient,
+    required VoidCallback onTap,
   }) {
     return GestureDetector(
-      onTap: () {
-      },
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
