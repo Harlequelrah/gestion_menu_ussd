@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   provider: ^6.0.5
   flutter_contacts: ^1.1.9+2
+  ussd_service: ^0.1.1
 
 dev_dependencies:
   flutter_test:

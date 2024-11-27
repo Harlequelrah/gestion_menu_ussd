@@ -25,8 +25,8 @@ class LandingScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          const HomeScreen(operatorChoice: 'TOGOCEL')));
-            }, child: const Text('TOGOCEL')),
+                          const HomeScreen(operatorChoice: 'YAS')));
+            }, child: const Text('YAS')),
       ],
     ));
   }

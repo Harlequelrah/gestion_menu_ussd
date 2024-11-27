@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String operatorChoice;
+
   @override
   void initState() {
     super.initState();
@@ -20,15 +21,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
             backgroundColor: Colors.grey[200],
-            child: Icon(
+            child: const Icon(
               Icons.person,
-              color: Colors.orange[900],
+              color: Colors.black87,
               size: 30,
             ),
           ),
@@ -41,7 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         actions: [
           IconButton(
-              icon: Icon(Icons.logout, color: Colors.orange[900]),
+              icon: const Icon(Icons.logout,
+                  color: Colors.black87),
               onPressed: () {
                 Navigator.pop(context);
               }),
@@ -55,10 +56,11 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   colors: [
-                    Colors.orange.shade900,
-                    Colors.orange.shade800,
+                    Colors.black87,
+                    Colors.deepPurple,
+                    Colors.blue,
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -81,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          'sirus22@gmail.com',
+                          '+228 91361029',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white70,
@@ -116,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Colors.white),
                             SizedBox(width: 5),
                             Text(
-                              "solde",
+                              "solde crédit",
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -131,25 +133,61 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 30),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-                children: [
-                  _buildFeatureButton(
-                    icon: Icons.history,
-                    label: 'Historique',
-                    onTap: () {},
+
+
+            const SizedBox(height: 20),
+            GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              childAspectRatio: 1.5,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                _buildFeatureButton(
+                  icon: Icons.account_balance_wallet,
+                  label: 'Solde',
+                  gradient: const LinearGradient(
+                    colors: [Colors.blue, Colors.purple],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                  _buildFeatureButton(
-                    icon: Icons.shopping_cart,
-                    label: 'Achat',
-                    onTap: () {},
+                ),
+                _buildFeatureButton(
+                  icon: Icons.send,
+                  label: 'Transfert',
+                  gradient: const LinearGradient(
+                    colors: [Colors.green, Colors.yellow],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                ],
-              ),
+                ),
+                _buildFeatureButton(
+                  icon: Icons.arrow_downward,
+                  label: 'Dépôt',
+                  gradient: const LinearGradient(
+                    colors: [Colors.orange, Colors.red],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                _buildFeatureButton(
+                  icon: Icons.remove_circle_outline,
+                  label: 'Retrait',
+                  gradient: const LinearGradient(
+                    colors: [Colors.pink, Colors.deepOrange],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                _buildFeatureButton(
+                  icon: Icons.shop,
+                  label: 'Achat',
+                  gradient: const LinearGradient(
+                    colors: [Colors.teal, Colors.indigo],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -160,26 +198,28 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildFeatureButton({
     required IconData icon,
     required String label,
-    required VoidCallback onTap,
+    required LinearGradient gradient,
   }) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+      },
       child: Container(
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          gradient: gradient,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 40, color: Colors.orange[900]),
+            Icon(icon, size: 40, color: Colors.white),
             const SizedBox(height: 10),
             Text(
               label,
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
           ],
