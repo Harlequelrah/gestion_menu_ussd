@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ussd_service/ussd_service.dart';
 
 class HomeScreen extends StatefulWidget {
   final String operatorChoice;
-  const HomeScreen({super.key, required this.operatorChoice});
+  final int subscriptionId;
+  const HomeScreen({super.key, required this.operatorChoice,required this.subscriptionId});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -10,11 +12,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String operatorChoice;
+  late int subscriptionId;
 
   @override
   void initState() {
     super.initState();
     operatorChoice = widget.operatorChoice;
+    subscriptionId = widget.subscriptionId;
+    UssdService ussdService =  UssdService();
   }
 
   @override
@@ -134,6 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 20),
             GridView.count(
+              mainAxisSpacing: 20.0,
+              crossAxisSpacing: 20.0,
               crossAxisCount: 2,
               shrinkWrap: true,
               childAspectRatio: 1.5,
@@ -146,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     colors: [Colors.blue, Colors.purple],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                  ),
+                  ) ,
                 ),
                 _buildFeatureButton(
                   icon: Icons.send,
@@ -198,7 +205,6 @@ class _HomeScreenState extends State<HomeScreen> {
     required LinearGradient gradient,
   }) {
     return GestureDetector(
-      onTap: () {},
       child: Container(
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
